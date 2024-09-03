@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script>
+            function disp()
+            {
+                var name = document.getElementById("user").value;
+                document.write("<h1 style='color:red'>Welcome " + name + "</h1>");
+            }
+        </script>
+    </head>
+    <body>
+        <label>Enter Name: </label>
+        <input type = 'text' id="user"/>
+        <button onclick="disp()"> Display Name </button>
+    </body>
+</html>

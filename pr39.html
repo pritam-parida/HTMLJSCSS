@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script>
+            function add()
+            {
+                var x = parseInt(document.getElementById("first").value);
+                var y = parseInt(document.getElementById("second").value);
+                var z = x+y;
+                document.getElementById('result').value = z;
+            }
+        </script>
+    </head>
+    <body>
+        <label>Input = </label>
+        <input type = 'text' id="first"/>
+        <label> + </label>
+        <input type = 'text' id="second"/>
+        <label> = </label>
+        <input type = 'text' id="result"/>
+        <button onclick="add()"> Add </button>
+    </body>
+</html>

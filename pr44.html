@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script>
+            function add()
+            {
+                var x = parseInt(document.getElementById("first").value);
+                var y = parseInt(document.getElementById("second").value);
+                var z = x+y;
+                document.getElementById('result').value = z;
+            }
+            function sub()
+            {
+                var x = parseInt(document.getElementById("first").value);
+                var y = parseInt(document.getElementById("second").value);
+                var z = x-y;
+                document.getElementById('result').value = z;
+            }
+            function mul()
+            {
+                var x = parseInt(document.getElementById("first").value);
+                var y = parseInt(document.getElementById("second").value);
+                var z = x*y;
+                document.getElementById('result').value = z;
+            }
+            function div()
+            {
+                var x = parseInt(document.getElementById("first").value);
+                var y = parseInt(document.getElementById("second").value);
+                var z = x/y;
+                document.getElementById('result').value = z;
+            }
+        </script>
+    </head>
+    <body>
+        <table border='10'>
+            <caption>
+                <h1 style='color:darkcyan'><b> CALCULATOR </b></h1>
+            </caption>
+            <tr>
+            <td colspan='2' align='left'><b> First Num : </b></td>
+            <td colspan='2' align='center'> <input type = 'text' id="first"/> </td>
+            </tr>
+            <tr>
+                <td colspan='2' align='left'><b> Second Num : </b></td>
+                <td colspan='2' align='center'> <input type = 'text' id="second"/> </td>
+            </tr>
+            <tr>
+                <td colspan='2' align='left'><b> Result : </b></td>
+                <td colspan='2' align='center'> <input type = 'text' id="result"/> </td>
+            </tr>
+            <tr>
+                <td colspan='4' align='center'> 
+                    <button onclick="add()"> ADD </button>
+                    <button onclick="sub()"> SUB </button>
+                    <button onclick="mul()"> MUL </button>
+                    <button onclick="div()"> DIV </button> 
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
