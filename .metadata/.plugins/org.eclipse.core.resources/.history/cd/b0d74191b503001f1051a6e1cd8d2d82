@@ -1,0 +1,95 @@
+import java.util.Scanner;
+class Node {
+    int data;
+    Node link;
+    public Node(int data) {
+        this.data = data;
+        this.link = null;
+    }
+}
+class Stack {
+    private Node top;
+    public Stack() {
+        this.top = null;
+    }
+    public boolean isEmpty() {
+        return top == null;
+    }
+    public void push(int data) {
+        Node temp = new Node(data);
+        temp.link = top;
+        top = temp;
+        System.out.println(data + " pushed to stack.");
+    }
+    public void pop() {
+        if (isEmpty()) {
+            System.out.println("Stack underflow. Unable to pop.");
+            return;
+        }
+        Node temp = top;
+        System.out.println("Popped : " + top.data);
+        top = top.link;
+        temp.link = null;
+    }
+    public void peek() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty. No elements to peek.");
+            return;
+        }
+        System.out.println("Top element is: " + top.data);
+    }
+    public void traverse() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty.");
+            return;
+        }
+        System.out.println("Elements in the stack:");
+        Node current = top;
+        while (current != null) {
+            System.out.println(current.data);
+            current = current.link;
+        }
+    }
+}
+public class SUSLinkedList {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Stack stack = new Stack();
+        while (true) {
+            System.out.println("\nStack Operations:");
+            System.out.println("1. Push");
+            System.out.println("2. Pop");
+            System.out.println("3. Peek");
+            System.out.println("4. Traverse");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            if (choice == 1) 
+            {
+                System.out.print("Enter element to push: ");
+                int element = scanner.nextInt();
+                stack.push(element);
+            } 
+            else if (choice == 2) 
+            {
+                stack.pop();
+            } 
+            else if (choice == 3) 
+            {
+                stack.peek();
+            } 
+            else if (choice == 4) 
+            {
+                stack.traverse();
+            } 
+            else if (choice == 5) 
+            {
+                System.out.println("Exiting... Thank you!");
+                scanner.close();
+                System.exit(0);
+            } else {
+                System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}

@@ -1,0 +1,117 @@
+import java.util.Scanner;
+
+public class StmtEvltn {
+    static final char LP = '(';
+    static final char RP = ')';
+    static final char OPERATOR = 'O';
+    static final char OPERAND = 'N';
+
+    static final int LPP = 0;
+    static final int AP = 1;
+    static final int SP = 1;
+    static final int MP = 2;
+    static final int DP = 2;
+    static final int REMP = 2;
+    static final int NONE = 9;
+
+    static char[] infix, stack, postfix;
+    static int top;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        char ch;
+        do {
+            top = -1;
+            System.out.print("\nEnter an Infix expression : ");
+            infix = sc.nextLine().toCharArray();
+            postfix = new char[infix.length];
+            stack = new char[infix.length]; // Initialize the stack array
+            InfixToPostfix();
+            System.out.println("Posfix expression is : " + new String(postfix));
+            System.out.print("Do you want to convert one more(y/n) : ");
+            ch = sc.next().charAt(0);
+            sc.nextLine(); // consume newline
+        } while (ch == 'y');
+    }
+
+    static void InfixToPostfix() {
+        int i, p, l, type, prec;
+        char next;
+        i = p = 0;
+        l = infix.length;
+        while (i < l) {
+            type = getType(infix[i]);
+            switch (type) {
+                case LP:
+                    push(infix[i]);
+                    break;
+
+                case RP:
+                    while ((next = pop()) != LP) {
+                        postfix[p++] = next;
+                    }
+                    break;
+
+                case OPERAND:
+                    postfix[p++] = infix[i];
+                    break;
+
+                case OPERATOR:
+                    prec = getPrecedence(infix[i]);
+                    while ((top > -1) && (prec <= getPrecedence(stack[top]))) {
+                        postfix[p++] = pop();
+                    }
+                    push(infix[i]);
+                    break;
+            }
+            i++;
+        }
+        while (top > -1) {
+            postfix[p++] = pop();
+        }
+    }
+
+    static int getType(char sym) {
+        switch (sym) {
+            case LP:
+                return LP;
+            case RP:
+                return RP;
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+            case '%':
+                return OPERATOR;
+            default:
+                return OPERAND;
+        }
+    }
+
+    static int getPrecedence(char sym) {
+        switch (sym) {
+            case LP:
+                return LPP;
+            case '+':
+                return AP;
+            case '-':
+                return SP;
+            case '*':
+                return MP;
+            case '/':
+                return DP;
+            case '%':
+                return REMP;
+            default:
+                return NONE;
+        }
+    }
+
+    static void push(char sym) {
+        stack[++top] = sym;
+    }
+
+    static char pop() {
+        return stack[top--];
+    }
+}

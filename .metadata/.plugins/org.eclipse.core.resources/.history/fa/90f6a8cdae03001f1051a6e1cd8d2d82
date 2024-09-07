@@ -1,0 +1,11 @@
+import java.util.Scanner;
+class LinkedListDS {
+	static Node root=null;
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

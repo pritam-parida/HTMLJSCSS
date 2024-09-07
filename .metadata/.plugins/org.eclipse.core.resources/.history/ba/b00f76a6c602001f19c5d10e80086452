@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class StackDS {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter initial capacity of stack");
+		int size = sc.nextInt();
+		int[] stack = new int[size];
+		int top = -1;
+		while(true)
+		{
+			System.out.println("1. Push");
+			System.out.println("2. Pop");
+			System.out.println("3. Peek");
+			System.out.println("4. Traverse");
+			System.out.println("5. Exit");
+			
+			System.out.print("Enter your choice:");
+			int ch = sc.nextInt();
+			
+			if (ch == 1)
+			{
+				
+			}
+			else if (ch == 2)
+			{
+				
+			}
+			else if (ch == 3)
+			{
+				
+			}
+			else if (ch == 4)
+			{
+				
+			}
+			else if (ch == 5)
+			{
+				System.out.println("End of the Program");
+				break;
+			}
+			else
+			{
+				System.out.println("Invalid Choice");
+			}
+		}
+
+	}
+
+}

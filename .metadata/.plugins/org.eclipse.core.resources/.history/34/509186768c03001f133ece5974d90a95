@@ -1,0 +1,101 @@
+
+public class DEQueueDS {
+
+	static int[] dq;
+	static int front = -1, rear = -1, size;
+	public static void main(String[] args) {
+		
+	}
+	
+	static void create(int n)
+	{
+		dq = new int[n];
+		size = n;
+	}
+	static void insertFront(int ele)
+	{
+		if(isFull())
+		{
+			
+		}
+		else
+		{
+			if()
+			{
+				
+			}
+			else if()
+			{
+				
+			}
+			else
+			{
+				
+			}
+			dq[front] = ele;
+			System.out.println("Element inserted");		}
+	}
+	static void deleteFront()
+	{
+		
+	}
+	static void insertRear(int ele)
+	{
+		if(isFull())
+		{
+			
+		}
+		else
+		{
+			if()
+			{
+				
+			}
+			else if()
+			{
+				
+			}
+			else
+			{
+				
+			}
+			dq[rear] = ele;
+			System.outprintln("Element inserted");
+	}
+	static void deleteRear()
+	{
+		if(isEmpty())
+		{
+			System.out.println("Queue is Underflow")
+		}
+		else
+		{
+			if()
+			{
+				
+			}
+			else if()
+			{
+				
+			}
+			else
+			{
+				
+			}
+			
+		}
+	}
+	static boolean isFull()
+	{
+		
+	}
+	static boolean isEmpty()
+	{
+		
+	}
+	static void traverse()
+	{
+		
+	}
+	
+}

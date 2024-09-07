@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class QueueDS {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter initial capacity of queue : ");
+        int capacity = sc.nextInt();
+        int[] queue = new int[capacity];
+        int rear = -1;
+        final int front = -1; // Fixed front index
+
+        while (true) {
+            System.out.println("1. Enqueue");
+            System.out.println("2. Dequeue");
+            System.out.println("3. Peek");
+            System.out.println("4. Display");
+            System.out.println("5. Exit");
+
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();
+
+            if (choice == 1) {
+                System.out.print("Enter the element to enqueue: ");
+                int element = sc.nextInt();
+                if (rear == capacity - 1) {
+                    // Queue is full, resize the queue
+                    capacity *= 2; // Double the capacity
+                    int[] newQueue = new int[capacity];
+                    // Copy elements to the new queue
+                    System.arraycopy(queue, 0, newQueue, 0, queue.length);
+                    queue = newQueue; // Update queue reference
+                }
+                queue[++rear] = element;
+                System.out.println("Element enqueued: " + element);
+            } else if (choice == 2) {
+                if (rear == front) {
+                    System.out.println("Queue is empty.");
+                } else {
+                    int dequeued = queue[front + 1]; // Dequeue from the front+1 index
+                    System.out.println("Dequeued element: " + dequeued);
+                    // Shift elements to the left to simulate dequeue
+                    for (int i = front + 1; i < rear; i++) {
+                        queue[i] = queue[i + 1];
+                    }
+                    rear--;
+                }
+            } else if (choice == 3) {
+                if (rear == front) {
+                    System.out.println("Queue is empty.");
+                } else {
+                    System.out.println("Element at front: " + queue[front + 1]);
+                }
+            } else if (choice == 4) {
+                if (rear == front) {
+                    System.out.println("Queue is empty.");
+                } else {
+                    System.out.println("Queue elements:");
+                    for (int i = front + 1; i <= rear; i++) {
+                        System.out.println(queue[i]);
+                    }
+                }
+            } else if (choice == 5) {
+                System.out.println("End of the program.");
+                sc.close();
+                break;
+            } else {
+                System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}

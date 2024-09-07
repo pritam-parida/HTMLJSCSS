@@ -1,0 +1,86 @@
+import java.util.*;
+
+public class StmtEvtln {
+
+    // Operator precedence map
+    private static final Map<Character, Integer> precedence = new HashMap<>();
+    static {
+        precedence.put('+', 1);
+        precedence.put('-', 1);
+        precedence.put('*', 2);
+        precedence.put('/', 2);
+    }
+
+    public static void main(String[] args) {
+        String infixExpression = "3 + 4 * 2 / ( 1 - 5 ) ^ 2";
+        String postfixExpression = infixToPostfix(infixExpression);
+        System.out.println("Postfix Expression: " + postfixExpression);
+        int result = evaluatePostfix(postfixExpression);
+        System.out.println("Evaluation Result: " + result);
+    }
+
+    // Method to convert infix expression to postfix expression
+    private static String infixToPostfix(String infix) {
+        StringBuilder postfix = new StringBuilder();
+        Deque<Character> stack = new ArrayDeque<>();
+
+        for (char ch : infix.toCharArray()) {
+            if (Character.isDigit(ch)) {
+                postfix.append(ch);
+            } else if (ch == '(') {
+                stack.push(ch);
+            } else if (ch == ')') {
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    postfix.append(stack.pop());
+                }
+                stack.pop(); // Pop the '('
+            } else { // Operator
+                while (!stack.isEmpty() && precedence.getOrDefault(stack.peek(), 0) >= precedence.getOrDefault(ch, 0)) {
+                    postfix.append(stack.pop());
+                }
+                stack.push(ch);
+            }
+        }
+
+        // Pop any remaining operators in the stack
+        while (!stack.isEmpty()) {
+            postfix.append(stack.pop());
+        }
+
+        return postfix.toString();
+    }
+
+    // Method to evaluate postfix expression
+    private static int evaluatePostfix(String postfix) {
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        for (char ch : postfix.toCharArray()) {
+            if (Character.isDigit(ch)) {
+                stack.push(ch - '0'); // Convert char to int
+            } else { // Operator
+                int operand2 = stack.pop();
+                int operand1 = stack.pop();
+                int result = performOperation(operand1, operand2, ch);
+                stack.push(result);
+            }
+        }
+
+        return stack.pop();
+    }
+
+    // Helper method to perform arithmetic operations
+    private static int performOperation(int operand1, int operand2, char operator) {
+        switch (operator) {
+            case '+':
+                return operand1 + operand2;
+            case '-':
+                return operand1 - operand2;
+            case '*':
+                return operand1 * operand2;
+            case '/':
+                return operand1 / operand2;
+            default:
+                throw new IllegalArgumentException("Invalid operator");
+        }
+    }
+}

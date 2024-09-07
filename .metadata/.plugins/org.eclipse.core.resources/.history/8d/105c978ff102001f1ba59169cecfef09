@@ -1,0 +1,27 @@
+
+public class HasA {
+
+	public static void main(String[] args) {
+		Employee emp = new Employee(101, "Amar", 45000);
+		System.out.println("Details : " + emp);
+	}
+
+}
+
+class Employee
+{
+	int id;
+	String name;
+	double salary;
+	
+	Employee(int id, String name, double salary)
+	{
+		this.id = id;
+		this.name = name;
+		this.salary = salary;
+	}
+	public String toString()
+	{
+		return this.id + ", " + this.name + ", " + this.salary;
+	}
+}

@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class BST {
+    static Node root = null;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\nEnter element to insert (or -1 to exit): ");
+            int ele = sc.nextInt();
+            if (ele == -1) {
+                System.out.println("Exiting...");
+                break;
+            }
+
+            insert(ele);
+            System.out.println("Element inserted: " + ele);
+        }
+
+        sc.close();
+    }
+
+    static void insert(int ele) {
+        Node newNode = new Node(ele);
+        if (root == null) {
+            root = newNode;
+            return;
+        }
+
+        Node parent = null;
+        Node current = root;
+        while (current != null) {
+            parent = current;
+            if (ele > current.data) {
+                current = current.right;
+            } else {
+                current = current.left;
+            }
+        }
+
+        if (ele < parent.data) {
+            parent.left = newNode;
+        } else {
+            parent.right = newNode;
+        }
+    }
+
+    public static class Node {
+        int data;
+        Node left;
+        Node right;
+
+        public Node(int data) {
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+    }
+}

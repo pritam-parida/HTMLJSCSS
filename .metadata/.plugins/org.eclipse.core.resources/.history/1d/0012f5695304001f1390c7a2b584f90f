@@ -1,0 +1,146 @@
+import java.util.Scanner;
+
+class Node {
+    int data;
+    Node left;
+    Node right;
+
+    public Node(int data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+public class BinarySearchTree {
+    private static Node root;
+
+    private BinarySearchTree() {
+    }
+
+    // Insert a node into the BST
+    public static void insert(int data) {
+        root = insertNode(root, data);
+    }
+
+    private static Node insertNode(Node root, int data) {
+        if (root == null) {
+            root = new Node(data);
+            return root;
+        }
+
+        if (data < root.data) {
+            root.left = insertNode(root.left, data);
+        } else if (data > root.data) {
+            root.right = insertNode(root.right, data);
+        }
+
+        return root;
+    }
+
+    // Delete a node from the BST
+    public static void delete(int data) {
+        root = deleteNode(root, data);
+    }
+
+    private static Node deleteNode(Node root, int data) {
+        if (root == null) {
+            return root;
+        }
+
+        if (data < root.data) {
+            root.left = deleteNode(root.left, data);
+        } else if (data > root.data) {
+            root.right = deleteNode(root.right, data);
+        } else {
+            // Node found, perform deletion
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
+            }
+
+            // Node with two children, get the inorder successor (smallest in the right subtree)
+            root.data = minValue(root.right);
+            root.right = deleteNode(root.right, root.data);
+        }
+
+        return root;
+    }
+
+    private static int minValue(Node root) {
+        int minValue = root.data;
+        while (root.left != null) {
+            minValue = root.left.data;
+            root = root.left;
+        }
+        return minValue;
+    }
+
+    // Inorder traversal of the BST
+    public static void inorder() {
+        inorderTraversal(root);
+        System.out.println();
+    }
+
+    private static void inorderTraversal(Node root) {
+        if (root != null) {
+            inorderTraversal(root.left);
+            System.out.print(root.data + " ");
+            inorderTraversal(root.right);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int choice = 0;
+        while (choice != 4) {
+            System.out.println("\nBinary Search Tree Menu:");
+            System.out.println("1. Insert a node");
+            System.out.println("2. Delete a node");
+            System.out.println("3. Inorder traversal");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+
+            if (!scanner.hasNextInt()) {
+                System.out.println("Invalid input! Please enter a number.");
+                scanner.nextLine(); // Consume invalid input
+                continue;
+            }
+
+            choice = scanner.nextInt();
+
+            if (choice == 1) {
+                System.out.print("Enter value to insert: ");
+                if (scanner.hasNextInt()) {
+                    int insertValue = scanner.nextInt();
+                    insert(insertValue);
+                } else {
+                    System.out.println("Invalid input! Please enter a number.");
+                    scanner.nextLine(); // Consume invalid input
+                }
+            } else if (choice == 2) {
+                System.out.print("Enter value to delete: ");
+                if (scanner.hasNextInt()) {
+                    int deleteValue = scanner.nextInt();
+                    delete(deleteValue);
+                } else {
+                    System.out.println("Invalid input! Please enter a number.");
+                    scanner.nextLine(); // Consume invalid input
+                }
+            } else if (choice == 3) {
+                System.out.print("Inorder traversal: ");
+                inorder();
+            } else if (choice == 4) {
+                System.out.println("Exiting...");
+            } else {
+                System.out.println("Invalid choice! Please try again.");
+            }
+
+            scanner.nextLine(); // Consume newline character
+        }
+
+        scanner.close();
+    }
+}

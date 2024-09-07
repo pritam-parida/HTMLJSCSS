@@ -1,0 +1,74 @@
+import java.util.Scanner;
+
+public class QueueDS {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter initial capacity of queue: ");
+        int size = sc.nextInt();
+        int[] queue = new int[size];
+        int front = 0;
+        int rear = 0;
+
+        while (true) {
+            System.out.println("1. Enqueue");
+            System.out.println("2. Dequeue");
+            System.out.println("3. Peek");
+            System.out.println("4. Traverse");
+            System.out.println("5. Exit");
+
+            System.out.print("Enter your choice: ");
+            int ch = sc.nextInt();
+
+            if (ch == 1) 
+            {
+                if (rear == size) 
+                    System.out.println("Queue is Overflow."); 
+                else 
+                {
+                    System.out.println("Enter the element to enqueue: ");
+                    int ele = sc.nextInt();
+                    queue[rear] = ele;
+                    rear++;
+                    System.out.println("Element enqueued.");
+                }
+            } 
+            else if (ch == 2) 
+            {
+                if (front == rear) 
+                    System.out.println("Queue is Underflow.");
+                else
+                {
+                    System.out.println("Dequeued : " + queue[front]);
+                    front++;
+                }
+            } 
+            else if (ch == 3) 
+            { 
+                if (front == rear) 
+                    System.out.println("Queue is empty."); 
+                else 
+                    System.out.println("Element at the front : " + queue[front]);
+            } 
+            else if (ch == 4) 
+            {
+                if (front == rear) 
+                    System.out.println("Queue is empty."); 
+                else 
+                {
+                    System.out.println("Queue elements: ");
+                    for (int i = front; i < rear; i++)
+                        System.out.println(queue[i]);
+                }
+            } 
+            else if (ch == 5) 
+            {
+                System.out.println("End of the Program.");
+                break;
+            } 
+            else 
+                System.out.println("Invalid Choice");
+        }
+        sc.close();
+    }
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Success</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff; /* Blue color for h1 */
+        }
+        h2 {
+            color: #ff3333; /* Red color for h2 */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            color: #4CAF50; /* Green color for links */
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login Success</h1>
+    <h2>Account Operations</h2>
+    <ul>
+        <li><a href='Create.html'>Create Account</a></li>
+        <li><a href='Display.html'>Display Details</a></li>
+        <li><a href='Deposit.html'>Deposit</a></li>
+        <li><a href='Withdraw.html'>Withdraw</a></li>
+        <li><a href='#'>Logout</a></li>
+    </ul>
+</body>
+</html>
